@@ -5,7 +5,7 @@ pipeline {
         // ===== FRONTEND BUILD =====
         stage('Build Frontend') {
             steps {
-                dir('FRONTEND') {
+                dir('FRONTEND/library') {
                     sh '''
                     export PATH="/usr/local/bin:$PATH"
 
@@ -38,7 +38,7 @@ pipeline {
         // ===== BACKEND BUILD =====
         stage('Build Backend') {
             steps {
-                dir('BACKEND') {
+                dir('BACKEND/SpringBootLibraryProject') {
                     sh '''
                     export PATH="/opt/maven/bin:$PATH"
                     mvn clean package
