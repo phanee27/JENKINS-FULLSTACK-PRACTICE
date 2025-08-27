@@ -13,7 +13,7 @@ function Home() {
 
   // Fetch all books
   const fetchBooks = () => {
-    fetch("http://localhost:6969/library/all")
+    fetch("http://localhost:2030/springbootlibraryapi/library/all")
       .then((res) => res.json())
       .then((data) => {
         if (typeof data === "string") {
@@ -38,8 +38,8 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const url = editing
-      ? `http://localhost:6969/library/update/${form.id}`
-      : "http://localhost:6969/library/add";
+      ? `http://localhost:2030/springbootlibraryapi/library/update/${form.id}`
+      : "http://localhost:2030/springbootlibraryapi/library/add";
 
     const method = editing ? "PUT" : "POST";
 
@@ -58,7 +58,7 @@ function Home() {
 
   // Delete book
   const handleDelete = (id) => {
-    fetch(`http://localhost:6969/library/delete/${id}`, { method: "DELETE" })
+    fetch(`http://localhost:2030/springbootlibraryapi/library/delete/${id}`, { method: "DELETE" })
       .then(() => fetchBooks())
       .catch((err) => console.error(err));
   };
