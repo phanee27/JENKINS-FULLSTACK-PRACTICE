@@ -1,0 +1,51 @@
+package com.klef.library.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.klef.library.entity.libraryEntity;
+import com.klef.library.service.libraryService;
+import com.sun.tools.javac.util.List;
+
+@RestController
+@CrossOrigin("*")
+@RequestMapping("library")
+public class libraryController {
+	@Autowired
+	private libraryService libraryservice;
+	
+	@GetMapping("/")
+	public String home() {
+		return "Home";
+	}
+	
+    @PostMapping("/add")
+    public ResponseEntity<libraryEntity> addlibraryEntity(@RequestBody libraryEntity libraryEntity) {
+        libraryEntity savedlibraryEntity = libraryEntityService.addlibraryEntity(libraryEntity);
+        return new ResponseEntity<>(savedlibraryEntity, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<libraryEntity>> getAlllibraryEntitys() {
+        List<libraryEntity> libraryEntitys = libraryEntityService.getAlllibraryEntitys();
+        return new ResponseEntity<>(libraryEntitys, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getlibraryEntityById(@PathVariable int id) {
+        libraryEntity libraryEntity = libraryEntityService.getlibraryEntityById(id);
+        if (libraryEntity != null) {
+            return new ResponseEntity<>(libraryEntity, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("libraryEntity with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+}

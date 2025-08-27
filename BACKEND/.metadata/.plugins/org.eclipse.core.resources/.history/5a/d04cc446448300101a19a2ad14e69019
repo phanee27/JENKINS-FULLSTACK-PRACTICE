@@ -1,0 +1,26 @@
+package com.klef.library.entity;
+
+import org.apache.el.parser.AstFalse;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class libraryEntity {
+	
+	@Id
+	@Column(name="id")
+	private int id;
+	@Column(name = "book_id", nullable = false, length = 50)
+	private int isbn;
+	@Column(name="title",nullable = false, length = 20)
+	private String title;
+	@Column(name="publish_year", nullable=false, length = 4)
+	private int publishyear;
+	@Column(name="category",nullable = false, length = 20)
+	private String title;
+	
+	
+	
+}

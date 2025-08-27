@@ -1,0 +1,40 @@
+package com.klef.library.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.klef.library.entity.libraryEntity;
+import com.klef.library.repository.LibraryRepository;
+
+@Service
+public class libraryServiceImpl implements libraryService{
+	private LibraryRepository libraryrepository;
+
+	@Override
+	public libraryEntity addBook(libraryEntity book) {
+		return libraryrepository.save(book);
+	}
+
+	@Override
+	public List<libraryEntity> getAllBooks() {
+		return libraryrepository.findAll();
+	}
+
+	@Override
+	public libraryEntity getBookById(int id) {
+		return ;
+	}
+
+	@Override
+	public libraryEntity updateBook(libraryEntity book) {
+		return libraryrepository.save();
+	}
+
+	@Override
+	public void deleteBook(int id) {
+		libraryrepository.deleteById(id);
+	}
+	
+	
+}

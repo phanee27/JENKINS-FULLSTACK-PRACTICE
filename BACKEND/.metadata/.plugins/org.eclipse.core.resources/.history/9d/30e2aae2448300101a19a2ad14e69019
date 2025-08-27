@@ -1,0 +1,6 @@
+package com.klef.library.service;
+
+
+public interface libraryService {
+
+}

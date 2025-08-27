@@ -1,0 +1,12 @@
+package com.klef.library.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class libraryEntity {
+	
+	@Id
+	private int id;
+
+}

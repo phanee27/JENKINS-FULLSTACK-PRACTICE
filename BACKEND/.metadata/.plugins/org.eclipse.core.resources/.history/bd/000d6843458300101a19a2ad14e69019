@@ -1,0 +1,15 @@
+package com.klef.library.service;
+
+import java.util.Optional;
+
+import com.klef.library.entity.libraryEntity;
+
+
+
+public interface libraryService {
+	libraryEntity addBook(libraryEntity book);
+	List<libraryEntity> getAllBooks();
+    Optional<libraryEntity> getBookById(int id);
+    libraryEntity updateBook(libraryEntity book);
+    void deleteBook(int id);
+}

@@ -1,0 +1,12 @@
+package com.klef.library.service;
+
+import org.springframework.stereotype.Service;
+
+import com.klef.library.repository.LibraryRepository;
+
+@Service
+public class libraryServiceImpl implements {
+	private LibraryRepository libraryrepository;
+	
+	
+}

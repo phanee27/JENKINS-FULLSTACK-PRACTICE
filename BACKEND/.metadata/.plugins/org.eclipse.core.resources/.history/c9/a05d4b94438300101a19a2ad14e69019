@@ -1,0 +1,14 @@
+package com.klef.library.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class libraryEntity {
+	
+	@Id
+	@Column(name="Student_id")
+	private int id;
+		
+}

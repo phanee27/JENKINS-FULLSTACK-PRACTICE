@@ -1,0 +1,78 @@
+package com.klef.library.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.klef.library.entity.libraryEntity;
+import com.klef.library.service.libraryServiceImpl;
+
+@RestController
+@CrossOrigin("*")
+@RequestMapping("library")
+public class libraryController {
+	
+    @Autowired
+    private libraryServiceImpl libraryservice;
+	
+    @GetMapping("/")
+    public String home() {
+        return "Home";
+    }
+	
+    // CREATE
+    @PostMapping("/add")
+    public ResponseEntity<libraryEntity> addlibraryEntity(@RequestBody libraryEntity libraryEntity) {
+        libraryEntity savedlibraryEntity = libraryservice.addBook(libraryEntity);
+        return new ResponseEntity<>(savedlibraryEntity, HttpStatus.CREATED);
+    }
+
+    // READ ALL
+    @GetMapping("/all")
+    public ResponseEntity<List<libraryEntity>> getAlllibraryEntitys() {
+        List<libraryEntity> libraryEntitys = libraryservice.getAllBooks();
+        return new ResponseEntity<>(libraryEntitys, HttpStatus.OK);
+    }
+
+    // READ by ID
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getlibraryEntityById(@PathVariable int id) {
+        libraryEntity libraryEntity = libraryservice.getBookById(id);
+        if (libraryEntity != null) {
+            return new ResponseEntity<>(libraryEntity, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("libraryEntity with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // UPDATE
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updatelibraryEntity(@PathVariable int id, @RequestBody libraryEntity updatedEntity) {
+        libraryEntity existing = libraryservice.getBookById(id);
+        if (existing != null) {
+            existing.setIsbn(updatedEntity.getIsbn());
+            existing.setTitle(updatedEntity.getTitle());
+            existing.setPublishyear(updatedEntity.getPublishyear());
+            existing.setCategory(updatedEntity.getCategory());
+            libraryEntity saved = libraryservice.updateBook(existing);
+            return new ResponseEntity<>(saved, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("libraryEntity with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // DELETE
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deletelibraryEntity(@PathVariable int id) {
+        libraryEntity existing = libraryservice.getBookById(id);
+        if (existing != null) {
+            libraryservice.deleteBook(id);
+            return new ResponseEntity<>("libraryEntity with ID " + id + " deleted successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("libraryEntity with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+}

@@ -1,0 +1,7 @@
+package com.klef.library.service;
+
+import com.klef.library.entity.libraryEntity;
+
+public interface libraryService {
+	libraryEntity addBook(libraryEntity)
+}
