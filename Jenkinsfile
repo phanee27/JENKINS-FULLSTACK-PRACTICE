@@ -30,7 +30,7 @@ pipeline {
                 fi
 
                 mkdir -p "$TOMCAT_DIR"
-                cp -R STUDENTAPI-REACT/dist/* "$TOMCAT_DIR"
+                cp -R FRONTEND/library/dist/* "$TOMCAT_DIR"
                 '''
             }
         }
@@ -63,7 +63,7 @@ pipeline {
                     rm -rf "$WAR_DIR"
                 fi
 
-                cp STUDENTAPI-SPRINGBOOT/target/*.war "$TOMCAT_WEBAPPS/"
+                cp BACKEND/SpringBootLibraryProject/target/*.war "$TOMCAT_WEBAPPS/"
                 '''
             }
         }
